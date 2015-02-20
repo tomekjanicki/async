@@ -1,0 +1,17 @@
+{
+  "name": "Async",
+  "version": "1.0.0",
+  "authors": [
+    "tjak <tomasz.janicki@impaqgroup.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "jquery-validation": "~1.13.1",
+    "jquery-validation-unobtrusive": "~3.2.2",
+    "modernizr": "~2.8.3",
+    "bootstrap": "~3.3.2",
+    "respond-minmax": "~1.4.2"
+  }
+}
