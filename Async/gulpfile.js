@@ -8,6 +8,9 @@ var minifyCSS = require('gulp-minify-css');
 var bower = require('gulp-bower');
 
 var config = {
+
+    dt_jquery_source: 'bower_components/dt-jquery/jquery.d.ts',
+    dt_jquery_dest: 'TsTypings/jquery.d.ts',
     //JavaScript files that will be combined into a jquery bundle
     jquerysrc: [
         'bower_components/jquery/dist/jquery.min.js',
@@ -43,6 +46,18 @@ gulp.task('clean-vendor-scripts', function () {
               config.bootstrapbundle,
               config.modernizrbundle]);
 });
+
+// Synchronously delete the output script file(s)
+gulp.task('clean-vendor-tstypings', function () {
+    del.sync([config.dt_jquery_dest]);
+});
+
+gulp.task('vendor-tstypings', ['clean-vendor-tstypings', 'bower-restore'], function () {
+    gulp.src(config.dt_jquery_source)
+    // Perform minification tasks, etc here
+    .pipe(gulp.dest(config.dt_jquery_dest));
+});
+
 
 // Combine and the vendor files from bower into bundles (output to the Scripts folder)
 gulp.task('vendor-scripts', ['clean-vendor-scripts', 'bower-restore'], function () {
@@ -87,4 +102,4 @@ gulp.task('bower-restore', function () {
 });
 
 //Set a default tasks 
-gulp.task('default', ['vendor-scripts', 'styles'], function () { });
+gulp.task('default', ['vendor-scripts', 'styles', 'vendor-tstypings'], function () { });
